@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrow function</title>
+    <style>
+        h1 {
+            color: orangered
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Arrow function</h1>
+    <p>Arrow function (hàm mũi tên)- tính năng mới rất hay của ES6- viết cú pháp ngắn gọn hơn để viết các biểu thức
+        hàm.</p><br>
+    <h2>Declaration Function</h2>    
+    <h2>Expression Function</h2>
+</body>
+<script>
+    //Declaration Function: Loại khai báo function cơ bản trong javascript và với loại này sẽ có áp dụng Hoisting trong javascript.
+    function decFunctionName() {
+        console.log('Declaration Function');
+    }
+    //Expression Function: Được gán vào một biến và nó chỉ sẽ chạy khi runtime nếu biến đó được gọi. Không áp dụng Hoisting.
+    exFunc = function () {
+        console.log('Expression Function');
+    }
+    //Arrow Function (ES6)
+    // không tham số
+    let arrFunc1 = () => {
+        console.log('Arrow Function (ES6) không tham số '); // arrFuncNoParam 
+    }
+    //không tham số +  1 dòng lệnh
+    let arrFunc2 = () => console.log('Không tham số + 1 dòng lệnh'); // 
+    
+    // có tham số
+    let arrFunc3 = (a, b) => {
+        return a + b;
+    }
+    // có tham số +  1 dòng lệnh
+    let arrFunc4 = (a, b) => a + b;
+
+    //chỉ có 1 tham số + 1 dòng lệnh
+    let arrFunc5 = a => console.log(a);
+
+    // arrow function được sử dụng như là một object method
+    let a = {
+        name: 'A',
+        sayName: function () {
+            let b = () => {//object method
+                console.log(this.name);// A //Khi được đặt vào bên trong một object method nó sẽ lấy context(this) từ object method cha gần nó nhất.
+            }
+            b();
+        }
+    }
+    a.sayName();
+</script>
+
+</html>

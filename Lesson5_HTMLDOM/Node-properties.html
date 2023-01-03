@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node properties</title>
+</head>
+<body>
+    <div class="box">
+        <h1 class="title" id="heading1" contenteditable="">Title Heading Node properties</h1>
+        <p>Content</p>
+    </div>
+
+
+    <script>
+        //get elemmnet node
+        var boxElemnet = document.querySelector('.box')
+        console.log(boxElemnet)//<div class="box"> <h1 class="title" id="heading1">Title Heading</h1></div>
+        console.log([boxElemnet])//Array(1) [div.box]
+        console.log(boxElemnet.id)//
+        console.log(boxElemnet.className)//box
+        console.log(boxElemnet.classList)//DOMTokenList (1) ['box', value: 'box']
+        console.log(boxElemnet.textContent)//Title Heading Node properties \n Content 
+        console.log(boxElemnet.innerText)//"Title Heading Node properties\n\nContent"
+        console.log(boxElemnet.innerHTML)//\n        <h1 class=\"title\" id=\"heading1\" contenteditable=\"\">Title Heading Node properties</h1>\n        <p>Content</p>\n  
+        console.log(boxElemnet.outerText)//"Title Heading Node properties\n\nContent"
+        console.log(boxElemnet.attributes)//NamedNodeMap {0: class, class: class, length: 1}
+        console.log(boxElemnet.baseURI)//"http://127.0.0.1:5500/Lesson5_HTMLDOM/Node-properties.html"
+        console.log(boxElemnet.ownerDocument)//document
+        console.log(boxElemnet.parentNode)//body
+        console.log(boxElemnet.parentElement)//body
+        console.log(boxElemnet.childElementCount)//2
+        console.log(boxElemnet.childNodes)//NodeList(5) [text, h1#heading1.title, text, p, text](text node & element node)
+        console.log(boxElemnet.children)//HTMLCollection(2) [h1#heading1.title, p, heading1: h1#heading1.title]
+        console.log(boxElemnet.clientHeight)//153 (Chiều cao của element.)
+        console.log(boxElemnet.clientWidth)//210
+        console.log(boxElemnet.firstChild)//text (textNode or elemetNode first)
+        console.log(boxElemnet.firstElementChild)// h1#heading1.title (elemnet first)
+        console.log(boxElemnet.lastChild)//text
+        console.log(boxElemnet.lastElementChild)//p
+        console.log(boxElemnet.nextElementSibling)// script (element next: <body> -> <script>)
+        console.log(boxElemnet.nextSibling)// text (element node & text node)
+        console.log(boxElemnet.nodeName)//"DIV"
+        console.log(boxElemnet.nodeType)//1
+        console.log(boxElemnet.nodeValue)//null
+        console.log(boxElemnet.autofocus)//false
+        console.log(boxElemnet.hidden)//false
+        console.log(boxElemnet.isContentEditable)
+    </script>
+    
+</body>
+</html>
+

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise</title>
+    <style>
+        h1 {
+            color: mediumvioletred;
+        }
+    </style>
+    <!-- 
+        1. Promise (sync, async) 
+            + Sync (Đồng bộ): Chạy theo thứ tự
+            +  Async (Bất đồng bộ): Chạy ngầm song song
+
+            => Sync (js): setTimeout, setInterval, fetch, xmlHttpRequest, file reading, request animation frame
+        2. Promise (pain)
+            Callback hell
+        3. Promise (concept)
+        - Create Promise
+        B1. new Promise(): Object contructor
+        B2. Excutor (promise duoc thuc thi khi goi toi Promise())
+            // Logic
+            // Thanh cong: resolve()
+            // That bai: reject()
+        - Promise Status :
+            1. Pendding: wait success/fail (no resolve/no reject => runing)
+            2. Fulfilled: excutor resolve()
+            3. Rejected: excutor reject()
+        - Interview:
+        Promise: 
+            Để xử lý các thao tác bất đồng bộ
+            Trươc khi có promise thì chúng ta thường dùng callback
+            Mà callback thì nó có xảy ra 1 vấn đề callback hell 
+            Callback hell (nó bị sâu vào, khó nhìn, code bị rồi rắm, khó hiểu)
+            Nên promise sinh ra thừ phiên bản javascript mới hơn (ES6)
+            Sử dụng promise để khắc phục tình trạng callback hell
+            Giúp viết code không bị sâu vào, dễ đọc, dễ hiểu hơn
+        Để tạo ra một promise:
+            + Sử dụng từ khóa new với Promise
+            + Trong contructor Promise() truyền vào excutor function
+            + Khi excutor function thực thi nhận được 2 tham số dạng hàm là resolve() và reject()
+            + resolve() gọi khi thao tác xử lý thành công
+            + reject() gọi khi thao tác xử lý thất bại
+        Khi sử dụng promise đối tượng promise đưọc tạo ra sử dụng qua phương thức .then() và .catch() đều nhận callback function
+            + then(): được thực thi khi promise được resolve
+            + cath(): khi promise được reject
+
+
+    -->
+    <!-- 
+        
+     -->
+</head>
+
+<body>
+    <h1>Promise (sync, async)</h1>
+    <h3>Sync & Async</h3>
+    <h1>Promise (pain)</h1>
+    <h3>Callback hell</h3>
+    <h1>Promise (concept)</h1>
+    <h3>Create Promise</h3>
+    <h3>Promise Status</h3>
+    <h3>Interview</h3>
+    <h1>Promise (chain)</h1>
+    <h3>Lý thuyết, cách hoạt động</h3>
+    
+</body>
+<!-- -----1. Promise (sync, async)----- -->
+<script>
+    setTimeout(function () {
+        console.log('Dòng này sẽ in ra sau')
+    }, 0)
+    // setTimeout là tác vụ bất động bộ (async)
+
+    console.log('Dòng này sẽ in ra trước') // Đây là tác vụ đồng bộ (sync)
+</script>
+
+<!-- -----2. Promise (pain)----- -->
+<!--  Callback hell/ Pyramid of dom -->
+<script>
+    //Callback hell 
+    setTimeout(function () {
+        console.log(1)//Viec 1 -> Xong -> Viec 2 -> Xong -> Viec 3 
+        setTimeout(function () {
+            console.log(2)//Viec 2
+            setTimeout(function () {
+                console.log(3)//Viec 3
+                setTimeout(function () {
+                    console.log(4)//Viec 4
+                }, 1000)
+            }, 1000)
+        }, 1000)
+    }, 1000)
+        //=> Promises thay the Callback Hell
+</script>
+
+<script>
+    var promise = new Promise(
+        //Excutor: 
+        function (resolve, reject) {//Pendding
+            //resolve()// Success   Done //Fulfilled
+            //reject() // Fail   Done //Rejected
+            
+            //call API
+            resolve([
+                {
+                    id:1,
+                    name:'Javascript'
+                }
+            ])
+            //[{…}] Done
+
+           // reject('Co loi') // Co loi  Done
+
+
+        }
+
+    );
+    promise
+        .then(function (course) {
+            //In Excutor when resolve called  -> callback then called
+            //console.log("Success");
+            console.log(course)
+        })
+        .catch(function (error) {
+            //In Excutor when reject called  -> callback catch called
+            //console.log("Fail");
+            console.log(error)
+        })
+        .finally(function () {
+            //In Excutor when resolve/reject called  -> callback finally called
+            console.log("Done");
+        })
+</script>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClassList Property</title>
+    <!-- 
+        ClassList Property: 
+            + Thuộc tính ClassList của element chứa các class của element đó.
+            + element.classList.add('')
+            + Return a DOMTokenList -> manage class element
+        DOMTokenList Properties and Methods    
+            1. add(): add class in element
+            2. contains(): check 1 class exits element? true
+            3. remove(): remove class in element
+            4. toggle(): have 1 class in elemnet -> remove class, no class in element -> add class
+            5. replace(): replace class in element
+            6. value(): return string value of attribute class
+            6. forEach(): executes a callback function for class in element
+            7. entries(), item(), supports(), values(), value, length
+    -->
+    <style>
+        .color-div{
+            color: brown;
+        }
+    </style>
+</head>
+<body>
+    <div class="box  box1">
+        <h1 class="title" id="heading1" >ClassList Property</h1>
+        <p> Content</p>
+        <p>Content 1</p>
+        <p>Content 2</p>
+        <p>Content 3</p>
+    </div>
+    <script>
+        var boxElement = document.querySelector('.box')
+        //get class
+        console.log(boxElement.classList)//DOMTokenList(2) ['box', 'box1', value: 'box box1']
+        console.log(boxElement.classList.length)// 2 //<div class="box box1">
+        console.log(boxElement.classList[1])// box 1 //[0]: box, [1]:box1, [2]:undefined
+        console.log(boxElement.classList.value)//box  box1 //return string value in class
+        
+        //add class in element (add class .color-div vao element <div>)
+        boxElement.classList.add('color-div', 'position-div' )//<div class="box box1 color-div position-div">...</div> 
+        
+        //check class exits element?
+        console.log(boxElement.classList.contains('color-div'))//true // Have class="color-div" in <div>
+        console.log(boxElement.classList.length)//4 //"box box1 color-div position-div"
+        console.log(boxElement.classList.value)//box box1 color-div position-div
+        
+        //remove elment
+        boxElement.classList.remove('color-div')//remove class="color-div"
+
+        //Remove/add elemnet: If it have class color-div -> remove, no class color-div -> add
+        boxElement.classList.toggle('color-div')//no class="color-div" (removed) -> add class="color-div"
+    
+    
+        // thêm class "content" vào các thẻ p
+        var pElement = document.querySelectorAll('p');
+        pElement.forEach(function(element){
+            element.classList.add('content');
+        });
+    
+    
+    </script>
+    
+</body>
+</html>

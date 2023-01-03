@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise example</title>
+    <style>
+        h1 {
+            color: mediumvioletred;
+        }
+        li{
+            color: darkcyan;
+            font-size: 25px;
+            margin-top: 10px;
+        }
+        ul{
+            background-color: rgb(211, 204, 204);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Promise example</h1>
+    <img src="./src/Comment.png" alt="">
+    
+    <ul id="comment-box">
+        <li></li>
+    </ul>
+    
+</body>
+<script>
+    var users = [
+        {
+            id: 1,
+            name: 'Hong Thuy'
+        },
+        {
+            id: 2,
+            name: 'F8 Official'
+        },
+        {
+            id: 3,
+            name: 'Nguoi la'
+        }
+
+    ]
+    var comments = [
+        {
+            id: '1',
+            user_id: 1,
+            content: 'Has F8 released a new video yet?'
+        },
+        {
+            id: '2',
+            user_id: 2,
+            content: 'Just released a new video.'
+        },
+        {
+            id: '3',
+            user_id: 3,
+            content: 'Very good video!!!'
+        },
+        {
+            id: '4',
+            user_id: 1,
+            content: 'Please make more videos!'
+        },
+    ]
+    //1. Lay Comment
+    // 2. Tu Comment lay ra ds User_id
+    // Tu User_is lay ra User tuong ung
+
+    //Fake API: Goi URL Backend tra ve
+    function getComments() {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(comments)
+            }, 1000)
+        })
+    }
+    //Lay ds tung  User_id
+    function getUserByIds(userIds) {
+        return new Promise((resolve) => {
+            //loc user nam trong list userIds
+            var result = users.filter(function (user) {
+                //chi bao gom user co id
+                return userIds.includes(user.id)
+            })
+            //sau 1s result
+            setTimeout(() => {
+                resolve(result)
+            }, 1000)
+        })
+    }
+
+
+
+    //Comment -> User_id -> User
+    getComments()
+        .then((comments) => {
+            //console.log(comments)//(3) [{…}, {…}, {…}]
+            //B1: Lay ds tung  User_id
+            var userIds = comments.map(function (comments) {
+                return comments.user_id;
+            })
+            //console.log(userIds);//(3) [1, 2, 3]
+            return getUserByIds(userIds)
+                .then(function (users) {
+                    return {
+                        //data
+                        users:users,
+                        comments:comments,
+
+                    }
+                })
+        })
+        .then((data) =>{
+            console.log(data)//Console (DOM)
+            //Get data DOM -> html
+            var cmtBlock = document.getElementById('comment-box')
+            var html='';
+            data.comments.forEach(function(comment){
+                var user = data.users.find(function(user){
+                    return user.id === comment.user_id;
+                });
+                
+                html += `<li>${user.name}: ${comment.content} </li>`;
+            });
+            cmtBlock.innerHTML = html;
+        });
+
+</script>
+
+</html>

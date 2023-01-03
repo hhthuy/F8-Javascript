@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes</title>
+    <style>
+        h1 {
+            color: orangered
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Classes</h1>
+    <p>Class là một <b>khuôn mẫu</b> - tạo ra các đối tượng(thuộc tính, phương thức) </p>
+
+</body>
+<script>
+
+    //1. OLD: Sử Dụng Constructor Function Trong JavaScript Để Khởi Tạo Object
+    //Create Contructor function -> Course object
+    function Course(name, price) {
+        // add properties to this
+        this.name = name;
+        this.price = price;
+
+        //add method 
+        this.getCourse = function () {
+            return this.name + " and " + this.price;
+        };
+    }
+    //khởi tạo object trong constructor function Course
+    const phpCourse = new Course('PHP', 10000);
+    const jsCourse = new Course('Javascript', 20000);
+    console.log(phpCourse);//Course {name: 'PHP', price: 10000, getCourse: ƒ}
+    console.log(jsCourse)//Course {name: 'Javascript', price: 20000, getCourse: ƒ}
+
+    //khởi tạo object có method getCourse
+    let course = new Course('Reactjs', 3000);
+    console.log(course.getCourse());//Reactjs and 3000
+
+    //2: NEW 
+    class Student {
+        //Hàm khởi tạo 
+        constructor(name, age) {
+             //Khai báo thuoc tinh
+            this.name = name;
+            this.age = age;
+           
+        }
+        //Khai báo phương thức
+        getName() {
+            return this.name;
+        }
+
+    }
+    var student1 = new Student("Ho Thi Hong Thuy", 22);
+    console.log(`Tên: ${student1.name}, tuổi: ${student1.age}`);
+    //Student {fullName: 'Ho Thi Hong Thuy', age: 22}
+</script>
+
+</html>

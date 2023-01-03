@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch</title>
+    <!-- 
+        https://jsonplaceholder.typicode.com/
+        Fetch: Lấy dữ liệu từ backend trả về
+	        1. Font-end: Xây dựng UI
+	        2. Back-end: Xây dựng logic xử lý + CSDL
+            API (Application Programming Interface) (Web API/Browser API/Server API
+
+        Backend -> API (Backend cap URL)-> Fetch (call API get data) -> JSON /XML
+        JSON.parse -> Javascript type -> Render UI with HTML
+     -->
+     <style>
+        h1 {
+            color: mediumvioletred;
+        }
+        li{
+            color: darkcyan;
+            margin-top: 10px;
+        }
+        h2{
+            background-color: rgb(185, 221, 245);
+        }
+    </style>
+</head>
+<body>
+    <h1>Fetch</h1>
+    <ul id="posts-box">
+        <li></li>
+    </ul>
+</body>
+<script>
+    //API -> fetch() goi API -> response -> return promise -> posts -> js -> UI
+    var postAPI = "https://jsonplaceholder.typicode.com/posts" //API
+    //fetch() goi API 
+    fetch(postAPI)
+        .then(function(response){// response -> return promise
+            return response.json();//promise (JSON.parse: JSON -> Js type (Object type))
+        })
+        .then(function(posts){//promise -> posts
+            //console.log(posts)//Array(100)
+            //js (Lặp lại một mảng và thay đổi giá trị của mảng => trả về mảng) -> render UI
+            var htmls = posts.map(function(post){
+                return `<li>
+                            <h2>${post.title}</h2>
+                            <p>${post.body}</p>
+                        </li>`;
+            })
+            // Chuyển từ mảng sang dạng chuỗi 
+            var html = htmls.join('')
+            //Lấy ra thẻ ul có id = "" chuyển sang dang html xuất ra màn hình
+            document.getElementById('posts-box').innerHTML = html;
+        })
+</script>
+
+
+</html>

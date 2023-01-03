@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sử dụng Postman làm việc với REST API</title>
+    <!-- 
+        - Mock API server (Fake API) 
+        - CRUD
+            + Create: Tao moi -> POST
+            + Read: Lay du lieu -> GET
+            + Update: Cap nhat du lieu -> PUT/ PATCH
+            + Delete: Xoa du lieu-> DELETE
+
+            HTTP (Hyper Text Transfer Protocol)
+        - Postman
+    -->
+    <style>
+        h1 {
+            color: mediumvioletred;
+        }
+
+        h2 {
+            color: dodgerblue;
+        }
+
+        input{
+            width: 300px;
+            height: 20px;
+            margin-top: 10px;
+            padding: 10px;
+        }
+        button {
+            background-color: #d823f0;
+            padding: 9px 16px;
+            border-radius: 999px;
+            border: none;
+            color: aliceblue;
+            font-size: 20px;
+        }
+        
+        label{
+            font-size: 20px;
+        }
+        .form{
+            width: 500px;
+            margin-left: 50px;
+            margin-top: 30px;
+            border: 2px solid rgb(0, 119, 255);
+            padding: 30px;
+        }
+        h3{
+            color: #f02356;
+        }
+        #delete{
+            background-color: #f02356;
+            padding: 9px 16px;
+            border-radius: 999px;
+            border: none;
+            color: aliceblue;
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Thêm/sửa/xóa khóa học với Fetch và REST API - Postman</h1>
+    <div>
+        <h2>Danh sách khóa học</h2>
+        <ul id="list-courses">
+
+        </ul> 
+    </div>
+
+    <h2>Them thông tin khóa học</h2>
+    <div class="form">
+        <div>
+            <label for="">Name</label>
+            <input type="text" name="name">
+        </div>
+        <div>
+            <label for="">Description</label>
+            <input type="text" name="description">
+        </div>
+        <div>
+            <button id="create">Submit</button>
+        </div>
+    </div>
+
+    <script src="./REST-API.js"></script>
+
+</body>
+
+</html>

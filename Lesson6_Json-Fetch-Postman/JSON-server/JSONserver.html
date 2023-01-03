@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON server</title>
+    <style>
+        h1 {
+            color: mediumvioletred;
+        }
+    </style>
+    <!-- 
+        Fetch: response.json()// json() return promise -> promise resolve (JSON.Paster: JSON -> JS)
+        JSON server: create API server (fake rest API)
+        https://github.com/typicode/json-server
+            + download nodejs
+            + 
+     -->
+</head>
+<body>
+    <h1>JSON server</h1>
+    
+</body>
+<script>
+    var courseAPI = "http://localhost:3000/courses"
+    fetch(courseAPI)
+        .then(function(response){
+            return response.json();
+        })
+        .then(function(courses){
+            console.log(courses);
+        });
+</script>
+</html>

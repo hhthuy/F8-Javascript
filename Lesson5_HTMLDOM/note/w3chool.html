@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML DOM W3SCHOOL</title>
+    <style>
+        h1{
+            color: brown;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>----------DOM Elements------------------</h1>
+    <form action="" id="frm1">
+        <h1>Finding HTML Elements</h1>
+        <h3 id="id1" >Finding HTML elements by id</h3>
+        <p class="class1">Finding HTML elements by class name</p>
+    </form>
+
+    <h2>Others</h2>
+    <img src="https://www.w3schools.com/js/pic_htmltree.gif" alt="" width="486" height="266"><br>
+    <a href="https://www.w3schools.com/js/js_htmldom_elements.asp">JavaScript HTML DOM Elements
+    </a><br>
+    <p id="title1"></p> 
+    <p id="img"></p>
+    <p id="anchor"></p>
+
+    <h1>----------DOM HTML------------------</h1>
+    <p id="myContent" >Changing HTML Content</p>
+    <img id="myImage"  src ="./src/Ex-DOM-Node-Tree-Old.gif" href=""  alt=""  >
+    <p id="myDynamicContent" >Changing HTML Content</p>
+    
+    <h1>----------DOM Forms------------------</h1>
+    <h2>JavaScript Validation</h2>
+      <form action="/action_page.php" method="post">
+        <input type="text" name="fname" required placeholder=" Your Name">
+        <input type="submit" value="Submit">
+      </form>
+
+      <h1>----------DOM CSS------------------</h1>
+      <p id="text1">Changing CSS</p>
+      <button type="button" 
+        onclick="document.getElementById('text1').style.color = 'red'">
+        Click Me!</button>
+
+
+        <h1>------HTML DOM Events----------</h1>
+        <h2 onclick="this.innerHTML='Ú òa!'">Click on this text!</h2>
+        <h2 onclick="changeText(this)">Click on this text!</h2>
+        
+        <button id="myBtn">Try it</button>
+        <p id="demoEvent"></p>
+    </body>
+
+<script>
+    //----------HTML Elements----------
+    document.getElementById("title1").innerHTML = "The title of this document is: " + document.title;
+    document.getElementById("img").innerHTML = "Number of images: " + document.images.length;
+    document.getElementById("anchor").innerHTML = "Number of anchors are: " + document.anchors.length;
+    document.getElementsByTagName("h3").innerHTML =  eId.innerHTML;
+    document.getElementById("id1")
+    document.getElementsByClassName("class1");
+    document.querySelectorAll("p.class1");
+    document.forms["frm1"];
+</script>
+
+<script>
+    //----------DOM HTML----------
+   document.getElementById('myContent').innerHTML="JavaScript HTML DOM";//Changing HTML Content
+   document.getElementById('myImage').src ="./src/Ex-DOM-Node-Tree.png";//Changing the Value of an Attribute
+   document.getElementById('myDynamicContent').innerHTML="Date : " + Date();//Dynamic HTML content
+   //document.write(Date());
+</script>
+
+<script>
+    // DOM FORMS
+    function validateForm() {
+  let x = document.forms["myForm"]["fname"].value;
+  if (x == "") {
+    alert("Name must be filled out");
+    return false;
+  }
+}
+
+</script>
+<script>
+    //DOM CSS
+    document.getElementById("text1").style.color = "blue";
+
+</script>
+
+<script>
+    function changeText(id) {
+      id.innerHTML = "Ú òa! Ú òa!";
+    }
+
+
+    document.getElementById("myBtn").onclick = displayDate;
+
+function displayDate() {
+  document.getElementById("demoEvent").innerHTML = Date();
+}
+    </script>
+</html>

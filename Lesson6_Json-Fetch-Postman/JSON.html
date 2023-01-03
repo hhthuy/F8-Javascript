@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON-Fetch-Postman</title>
+    <style>
+        h1 {
+            color: mediumvioletred;
+        }
+    </style>
+    <!-- JSON là gì? 
+            1. Là 1 định dạng dữ liệu (chuỗi)
+            2. (JavaScript Object Notation)
+            3. JSON <->Number, Boolean, Null, Array, Object 
+                + Stringify (JSON -> Number, Boolean, Null, Array, Object)
+                + Parser (Number, String, Boolean, Null, Array, Object - > JSON)
+      -->
+</head>
+
+<body>
+    <h1>JSON</h1>
+    <script>
+        console.log('----------JSON----------')
+        //1. parse (Javascript type - > JSON)
+        var jsonNum = '1'; //string json
+        console.log(jsonNum) // 1 //typeof string
+        console.log(JSON.parse(jsonNum)) //1 //typeof number
+
+        var jsonStr = '"Thuy"'; //string json
+        console.log(jsonStr) // "Thuy" //typeof string
+        console.log(JSON.parse(jsonStr)) //Thuy //typeof number
+
+        var jsonBool = 'false'; //Chuỗi dl json thể hiện kiểu dữ liệu boolean
+        console.log(jsonBool) // false //typeof string
+        console.log(JSON.parse(jsonBool))//false //typeof boolean
+
+        var jsonNull = 'null';//string json
+        console.log(jsonNull) // null //typeof string
+        console.log(JSON.parse(jsonNull))//null //typeof null
+
+        var jsonArr = '["Javascript","PHP"]';//string json
+        console.log(jsonArr) // ["Javascript","PHP"] //typeof string
+        console.log(JSON.parse(jsonArr))//(2) ['Javascript', 'PHP'] //typeof array javascript
+
+        var jsonObj = '{"name":"Thuy", "age":21}';//string json
+        console.log(jsonObj) // {"name:"Thuy", "age":21} //typeof string
+        console.log(JSON.parse(jsonObj))//{name: 'Thuy', age: 21} //typeof object javascript
+
+        //stringify (JSON -> Javascript type)
+        console.log(JSON.stringify({
+            name: 'Hong THuy',
+            age: 20,
+            test: function () { }
+        }));//{"name":"Hong THuy","age":20} //String typeof
+
+    </script>
+
+
+
+</body>
+
+</html>

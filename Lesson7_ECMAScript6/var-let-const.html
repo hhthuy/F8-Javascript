@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Let & Const</title>
+    <style>
+        h1{
+            color:orangered
+        }
+    </style>
+</head>
+<body>
+    <h1>Let & Const</h1>
+    <h3>Scope</h3>
+    <h3>Hosting</h3>
+    <h3>Assignment</h3>
+</body>
+<script>
+/**
+ * 1. Var/ let, cost: Scope, Hosting
+ * 2. Const / Var, let: Assignment
+ * Khi nào sử dụng let, const, var? 
+ *      - Code thuần (Code js không qua thư viện/trình thông dịch nào khác): var
+ *      - Có sử dụng thư viện Babel: let, const
+ *             +  const: Khi định nghĩa biến và không gán lại biến đó
+ *              + let: Khi cần gán lại giá trị cho biết
+ * */
+
+
+//1. SCOPE
+/**
+ * Giống: Đều sử dụng khai báo biến và gán giá trị cho nó
+ * Khác scope: {Code block: if else, loop, {}...}
+        Let, const: Không truy cập được ngoài block
+        Var: truy cập được trong và ngoài block
+ * */
+
+if(true){
+    var scopeVar ='Scope var';
+}
+console.log(scopeVar)//Scope var
+
+// if(true){
+//     let scopeLet ='Scope let';
+// }
+// console.log(scopeLet)//not defined // ngoai block ko truy cap duoc
+
+// if(true){
+//     const scopeConst ='Scope let';
+//     {
+//         const scopeConst = 123;
+//         console.log(scopeConst)//123 // uu tien block gan nhat
+//     }
+//     //console.log(scopeConst)//trong block truy cap duoc
+// }
+// console.log(scopeConst)////not defined //// ngoai block ko truy cap duoc
+
+//2. HOISTING: 
+/**
+ * Đưa định nghĩa biến lên trên đầu có hỗ trợ hosting la var (let/const không hỗ trợ hosting)
+ * 
+ * */
+//var hỗ trợ hosting : Định nghĩa biến/Gán biến (var) -> truy cập
+//or var v = 1; v=1;  console.log(v)//1
+v=1; var v = 1;
+console.log(v)//1
+
+// l=2; let l;  // 
+// console.log(l)//not defined
+
+// c=3; const c;  //
+// console.log(c)//not defined
+
+
+//3. Assignment: Const/ Var, Let
+/**
+ * Var, let: Gán giá trị lại được
+ * const: ko Gán giá trị lại được
+ * */
+var a=1;
+a = 100;
+console.log(a);//100
+
+let b=2;
+b = 200;
+console.log(b);//200
+
+// const c=3;
+// c = 300;//No
+// console.log(c);//Error
+
+const c1 ={
+    name:'Javascript'
+}
+c1.name = 'PHP';//YES -> Gán lại thuộc tính name của Object cho a, Chứ ko gán lại a(NO -> a = 'PHP' )
+console.log(c1.name);//PHP
+
+
+</script>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destructuring, Rest</title>
+    <style>
+        h1 {
+            color: orangered
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Destructuring, Rest</h1>
+
+</body>
+
+<script>
+    //Destructuring Array
+    const names = ["Alice", "Bob", "Charlie", "David", "Eric"];
+    let [a,b,...restNames] = names;
+    console.log(restNames); // (3) ['Charlie', 'David', 'Eric']
+
+    ////Destructuring Object
+    const student ={
+        name:'Thuy',
+        age:21,
+        gender:'Nu'
+    }
+    const {name, age, ...restStudent} = student;
+    console.log(restStudent)//{gender: 'Nu'}
+</script>
+
+</html>

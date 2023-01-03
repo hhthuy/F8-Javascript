@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise (chain)</title>
+    <style>
+        h1 {
+            color: mediumvioletred;
+        }
+    </style>
+</head>
+<body>
+    <h1>Promise (chain)</h1>
+    
+</body>
+
+<script>
+    var promise = new Promise(
+        function (resolve, reject) {
+            resolve();
+        }
+
+    );
+    //function then() 
+    // return promise -> thuc hien promise
+    // return ko promise -> thuc hien then tiep theo
+    promise
+        .then(function () {//then1
+            return 1;//then1 ko return promise or rong  -> chay then2 tiep theo
+        })
+        .then(function (data) {//then2
+            return new Promise(function(resolve){//then2 return promise -> then3 phai chờ cho then2 chay xong -> thuc hien then3 
+                setTimeout(function(){
+                    resolve([1,2,3])
+                }, 1000)
+            })
+        })
+        //(3) [1, 2, 3]  Done
+        .then(function (data) {
+            console.log(data)
+            return 3;
+        })
+        .catch(function (error) {
+            console.log(error)
+        })
+        .finally(function () {
+                       console.log("Done");
+        })
+</script>
+
+<script>
+    function sleep(ms){
+        return new Promise(function(resolve){//return promise
+            setTimeout(resolve, ms);//ms-> sleep(ms) -> setTimeout(ms) -> sau khoang thoi gian ms -> resolve promise
+        })
+    }
+        sleep(1000)
+        .then(function(){
+            console.log('A')////sleep(1000) -> 1000 -> function sleep(ms) -> return promise -> 1
+            return sleep(3000)// vi then() la promise -> then1 sleep 1s -> thuc hien then2
+
+        })
+        .then(function(){
+            console.log('B');//sleep 1s (then1 la promise)->return 2
+            return sleep(3000);
+        })
+        .then(function(){
+            console.log('C');
+            return sleep(3000);
+        })
+        .then(function(){
+            console.log('D');
+            return sleep(3000);
+        })
+</script>
+</html>

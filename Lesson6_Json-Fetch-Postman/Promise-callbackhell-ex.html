@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ví dụ về callback hell và cách giải quyết bằng Promise</title>
+    <style>
+        h1 {
+            color: mediumvioletred;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ví dụ về callback hell và cách giải quyết bằng Promise</h1>
+    <h3>Khi tạo ra 1 đoạn code callback hell sẽ dẫn đến khó đọc code, <br>
+        => Áp dụng tính chất chuỗi (chain) của Promise <br>
+        để tạo ra 1 đoạn code dễ nhìn hơn mà vẫn đảm bảo đúng logic.</h3>
+</body>
+<script>
+    function hell(value, cb) {
+    cb(value);
+}
+
+// Không sử dụng Promise dẫn đến tạo ra callback hell 
+hell(1, function (valueFromA) {
+    hell(valueFromA + 1, function (valueFromB) {
+        hell(valueFromB + 1, function (valueFromC) {
+            hell(valueFromC + 1, function (valueFromD) {
+                console.log(valueFromD + 1);
+            });
+        });
+    });
+});
+
+// Sử dụng Promise sẽ tạo ra đoạn code dễ đọc hơn và vẫn đảm bảo đúng logic
+function notHell(value) {
+    return new Promise(function (resolve) {
+        resolve(value);
+    });
+}
+
+notHell(1)
+    .then(function (value) {
+        return value + 1;
+    })
+    .then(function (value) {
+        return value + 1;
+    })
+    .then(function (value) {
+        return value + 1;
+    })
+    .then(function (value) {
+        console.log(value + 1);
+    });
+
+</script>
+</html>

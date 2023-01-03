@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Events</title>
+    <style>
+        h1 {
+            color: darkgreen;
+        }
+
+        input {
+            width: 300px;
+            height: 30px;
+            margin-top: 10px;
+        }
+
+        select {
+            width: 200px;
+            height: 30px;
+        }
+
+        button {
+            background-color: #0f8005;
+            padding: 9px 16px;
+            border-radius: 999px;
+            border: none;
+            font-size: 20px;
+            color: rgb(248, 248, 248);
+        }
+    </style>
+    <!-- 
+
+        * DOM events
+            1. HTML Attribute events
+            2. DOM Attribute events: Assign event using the element node
+            3. addEventListener
+        * DOM events example
+            1. Input / select
+            2. Key up / down
+        * PreventDefault and StopPropagation
+            1. preventDefault: Loại bỏ hành vi mặc định của browser trên 1 thẻ HLML
+            2. stopPropagation: Loại bỏ sự kiện nổi bọt
+    -->
+</head>
+
+<body>
+    <!-- 1. HTML Attribute events -->
+    <h1>Sử dụng thuộc tính HTML</h1>
+    <h2 onclick="console.log(this.innerText)">
+        <span>Event Bubbling</span>
+    </h2><!-- this: return element node <h1> -->
+    <h2 onmouseover="console.log(this)">onmouseover</h2>
+    <h2 onmouseout="console.log(Math.random())">onmouseout</h2>
+
+    <!-- 2. Assign event using the element node -->
+    <h1>Sử dụng Thuộc tính DOM</h1>
+    <h3>Click text</h3>
+    <p>1</p>
+    <p>2</p>
+    <p>3</p>
+
+    <!-- 3.addEventListener -->
+    <h1>Sử dụng phương pháp addEventListener</h1>
+    <button id="button1">Click Me 1!</button>
+
+    <!-- BT -->
+    <h1>Thực hành sử dụng DOM Events</h1>
+    <button id="change1">Change color 1</button>
+    <button id="change2">Change color 2</button>
+
+    <h1>DOM events example</h1>
+    <input type="text" placeholder="Input"><br>
+    <input type="checkbox"><br>
+    <select>
+        <option value="1">Javascript</option>
+        <option value="2">Java</option>
+        <option value="3">PHP</option>
+    </select>
+    <br>
+    <input type="text" id="keyup" placeholder="Key up"><br>
+    <input type="text" id="keydown" placeholder="Key down">
+
+
+    <h1>PreventDefault and StopPropagation</h1>
+    <p>PreventDefault: Đặt lại Nhấn vào link F8 sẽ chuyển trang</p>
+    <a href="https://google.com.vn/">Tìm kiếm</a><br>
+    <a href="https://fullstack.edu.vn/"> Học lập trình F8</a><br>
+
+    <p>PreventDefault: Click vào ô tìm kiếm hiển thị HTML đầu tiên</p>
+    <input type="text" name="" id="search" placeholder="Tim kiem">
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>Javascript</li>
+    </ul>
+    <!-- <ul> ẩn -> input ma focus ~ lay hiện lên <ul>-->
+    <style>
+        ul{
+            display: none;
+        }
+        input#search:focus  ~ ul{
+            display: block;
+        }
+    </style>
+    <p> StopPropagation: Khi nhấn vào the div in "DIV", nhấn button in chữ "Click me" </p>
+    <!--
+        Khi nhấn vào <div> -> in "DIV" 
+        Khi nhấn button -> in chữ "Click me" (Do sự kiện nổi bọt => in ra "Content button" va "DIV")
+        Để bỏ hành vi nổi bọt khi nhấn vào button chỉ hiện thị "Content button" không có nổi bọt "DIV" ?
+    -->
+    <div>
+        DIV 
+        <button id="btnNoiBot">Click me!</button>
+    </div>
+
+    <!------------------ XU ly DOM event---------------- -->
+    <!-- C2 -->
+    <script>
+        var h3Element = document.querySelector('h3')
+        h3Element.onclick = function () {
+            console.log("Assign event using the element node")
+        }
+
+        var pElement = document.querySelectorAll('p') //Nodelist=Array
+        for (var i = 0; i < pElement.length; ++i) {
+            pElement[i].onclick = function (e) {
+                console.log(e.target)//target là phần tử trực tiếp gây ra sự kiện xxx pElement[i]xxx 
+            }
+        }
+    </script>
+
+    <!-- C3 -->
+    <script>
+        const element = document.getElementById("button1");
+        element.addEventListener("click", fxn1);
+        function fxn1() {
+            alert("Nhấp vào Sự kiện Đã kích hoạt chức năng này");
+        }
+    </script>
+
+    <!-- ---------Thực hành sử dụng DOM Events------------------- -->
+    <!-- Khi click vào button sẽ đổi màu chữ button sang màu #fff -->
+    <script>
+        // C1
+        var btnClick = document.querySelector('#change1')
+        btnClick.onclick = function () {
+            btnClick.style.color = "red";
+        }
+
+        //C2
+        document.querySelector('#change2').onclick = (e) => {
+            e.target.style.color = '#ffcc00';
+        }
+    </script>
+
+    <!-- DOM events example -->
+    <script>
+        //Input / select (oninput/ onchange )
+        var inputElement = document.querySelector('input[type="text"]')
+        inputElement.oninput = function (e) {//onchange: blur ra ngoai lay dl, oninput: input lay dl truc tiep
+            console.log(e.target.value)//e -> mouse event 
+        }
+
+        var checkElement = document.querySelector('input[type="checkbox"]')
+        checkElement.onchange = function (e) {
+            console.log(e.target.checked)//true
+        }
+
+        var selectElement = document.querySelector('select')
+        selectElement.onchange = function (e) {
+            console.log(e.target.value)// 1|2|3
+        }
+
+        //Key up / down
+        var inputKeyUpElement = document.querySelector('#keyup')
+        inputKeyUpElement.onkeyup = function (e) {
+            console.log(e.target.value)//123 -> 123
+        }
+        var inputKeyDownElement = document.querySelector('#keydown')
+        inputKeyDownElement.onkeydown = function (e) {
+            console.log(e.target.value)//123 -> 12
+        }
+    </script>
+</body>
+  <!-- PreventDefault and StopPropagation -->
+  <script>
+    // PreventDefault: link
+    var aElement = document.links//anchors -> link: name=""
+    for (let i = 0; i < aElement.length; i++) {
+        aElement[i].onclick = function (e) {
+            //Nếu bắt đầu nhấn không phải URL F8 -> Ngăn chặn  hành vi mặc định của <a> 
+            if (!e.target.href.startsWith('https://fullstack.edu.vn/')) {
+                e.preventDefault();////Bấm "link tìm kiếm" -> Ngăn chặn || Bấm "link F8" -> sang Link F8
+            }
+        }
+    }
+    // PreventDefault: input
+    var ulElement = document.querySelector('ul')
+    //Ngăn chặn hành vi mặc định (blur bị mất ul) của thẻ ul -> preventDefault() khi blur (KO bị mất ul)
+    ulElement.onmousedown = function(e){
+        e.preventDefault()
+    
+    }//Lắng nghe sự kiện ul, 
+    ulElement.onclick = function(e){
+        console.log(e.target)
+    }
+
+    //StopPropagation
+    //Để bỏ hành vi nổi bọt khi nhấn vào button chỉ hiện thị "Content button" không có nổi bọt "DIV" ?
+    document.querySelector('div').onclick = 
+    function(){
+        console.log('DIV')//DIV
+    }
+    document.querySelector('#btnNoiBot').onclick = 
+    function(e){
+        //Ngăn chặn nỏi bọt nhấn button hiển thị "Content button   DIV"
+        e.stopPropagation();
+        console.log('Content button')//Content button
+    }
+</script>
+
+    <!-- Event listener -->
+
+</html>

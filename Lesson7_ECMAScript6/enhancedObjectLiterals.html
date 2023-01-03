@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced object literals</title>
+    <style>
+        h1 {
+            color: orangered
+        }
+    </style>
+</head>
+<body>
+    <h1>Enhanced object literals</h1>
+    <h3>Định nghĩa 'key:value' cho object</h3>
+    <h3>Định nghĩa 'method' cho object</h3>
+    <h3>Định nghĩa 'key' cho object dưới dạng biến</h3>
+    
+</body>
+<script>
+    var name = 'Javascript'
+    var price =1000;
+    var fielDescription ='description'
+
+    //Creat Object
+    var course ={
+        //KB key:value cho object
+        name,
+        price,
+        //KB method cho object
+        getName(){
+            return name;
+        },
+        //key cho object dưới dạng biến
+        [fielDescription]:'Learn basic javascript programming',
+    }
+    console.log(course)
+    console.log(course.getName())
+</script>
+</html>

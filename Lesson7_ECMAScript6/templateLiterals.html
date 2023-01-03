@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template literals</title>
+    <style>
+        h1{
+            color:orangered
+        }
+    </style>
+</head>
+<body>
+    <h1>Template literals</h1>
+    <h3>' ' + ' '</h3>
+    <h3>`${}`</h3>
+    <h1>Multi-line String</h1>
+    <h3>' \n' + ' \n'</h3>
+    <h3>`... `</h3>
+</body>
+<script>
+    //1. Template literals
+    //Sử dụng toán tử ('' + '') để nối chuỗi
+    const content1 = 'Sử dụng toán tử';
+    const string1 = 'Nối chuỗi: ' + content1;
+    console.log(string1)//Nối chuỗi: Sử dụng toán tử
+    
+    //Template string `${}` để nối chuỗi
+    const content2 = 'Template string';
+    const content3 = 'ES6';
+    const string2 = `Nối chuỗi: ${content2} ${content3} \$ \\ `;
+    console.log(string2)//Nối chuỗi: Template string ES6
+
+    //2. Multi-line String (Extention: tabnine)
+    //Sử dụng toán tử (' \n' + ' \n') để nối nhiều chuỗi
+    const lines = 'Line 1 \n'
+                + 'Line 2 \n'
+                + 'Line 3 \n'
+                + 'Line 4 \n'
+    console.log(lines)
+
+    ////Template string `  `  để nối nhiều chuỗi
+    const linesTemplateString  = `Line Template String 1
+                Line Template String 2
+                Line Template String 3
+                Line Template String 4`;
+    
+    console.log(linesTemplateString)
+
+</script>
+</html>

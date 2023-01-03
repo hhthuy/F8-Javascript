@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event listener</title>
+    <style>
+        h1{
+            color: darkmagenta;
+        }
+        button {
+            background-color: #d823f0;
+            padding: 9px 16px;
+            border-radius: 999px;
+            border: none;
+            color: aliceblue;
+            font-size: 20px;
+        }
+    </style>
+    <!-- 
+        1. DOM event / Event listener: 
+        2. JSON
+        3. Fetch
+        4. DOM location
+        5. Local storage
+        6. Session storage
+        7. Coding convention
+        8. Best Practices
+        9. Mistakes
+        10. Performance
+
+        //
+            I. Xử lý nhiều việc khi 1 event xảy ra
+            II. Lắng nghe / Hủy bỏ lắng nghe 
+     -->
+</head>
+
+<body>
+
+    <h1>DOM event / Event listener</h1>
+    <button id="button1">DOM event</button>
+    <button id="button2">Event listener</button>
+    <!-- I. Xử lý nhiều việc khi 1 event xảy ra -->
+
+    <!--DOM event: Xử lý nhiều việc khi 1 event xảy ra  -->
+    <script>
+        var btnDOMevent = document.getElementById('button1');
+        //Lắng nghe event
+        btnDOMevent.onclick = function(e){
+            //Viec 1
+            console.log('DOM event viec 1')
+            //Viec 2
+            alert('DOM event viec 2')
+
+        }
+        //Hủy bỏ lắng nghe -> Gán lại bằng function rỗng
+        setTimeout(function(){
+            btnDOMevent.onclick = function(){}
+        }, 3000)
+    </script>
+
+    <!-- Event listener: Xử lý nhiều việc khi 1 event xảy ra -->
+    <!-- 
+        Thêm 2 hoặc nhiều hơn 2 trình nghe sự kiện cho cùng một sự kiện
+        element.addEventListener(event, callback function, useCapture); 
+            element : phần tử HTML đính kèm với sự kiện
+            event : tên sự kiện
+            callback function : hàm chạy sau khi sự kiện kích hoạt
+            useCapture : một giá trị boolean chỉ định sử dụng sự kiện tạo bởi hay ghi lại sự kiện. (Đây là một tham số tùy chọn và giá trị mặc định là false )
+    -->
+   <script>
+        const btnEventListener = document.getElementById("button2");
+        //Lắng nghe event
+        btnEventListener.addEventListener("click", fxn1);
+        btnEventListener.addEventListener("click", fxn2);
+        //Viec 1
+        function fxn1() {
+             console.log("Event listener Viec 1");
+        }
+        //Viec 2
+        function fxn2() {
+            alert("Event listener Viec 2");
+        }
+        //Viec 3
+        btnEventListener.addEventListener("click", function(e){
+            console.log("Event listener Viec 3");
+        });
+
+        //Hủy bỏ lắng nghe -> Gán lại bằng function rỗng
+        // Click vao button sau 3s huy lang nghe fxn1
+        setTimeout(function(){
+            btnEventListener.removeEventListener('click', fxn1)
+        }, 3000)
+
+    </script>
+</body>
+
+</html>

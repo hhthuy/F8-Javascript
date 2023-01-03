@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spread</title>
+    <style>
+        h1 {
+            color: orangered
+        }
+    </style>
+</head>
+<body>
+    <h1>Spread</h1>
+</body>
+<script>
+    let x = [ 1, 2 ,3];
+    let newArray = [ 4, 5, ...x ];
+    
+    console.log(newArray)//(5) [4, 5, 1, 2, 3]
+
+    let obj1 = { name: "Thuy" };
+    let obj2 = { age: 22 };
+
+    let newObj = { ...obj1, ...obj2 };
+    console.log(newObj)//{ name: "Thuy", age: 22 }
+</script>
+</html>
